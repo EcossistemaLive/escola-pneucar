@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola de Mecânica Pneucar | Formação Prática</title>
+    
+    <!-- Fontes: Chakra Petch (Industrial) e Poppins (Leitura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- 1. VARIÁVEIS E TOKENS (Identidade "Garage Dark") --- */
+        :root {
+            /* Cores Principais */
+            --garage-black: #0a0a0a;       /* Fundo Absoluto */
+            --garage-dark: #121212;        /* Fundo Secundário */
+            --garage-gray: #1e1e1e;        /* Cards */
+            
+            --mechanic-orange: #ff6b00;    /* Ação / Destaque (Laranja Ferramenta) */
+            --mechanic-yellow: #f1c40f;    /* Alerta / Atenção */
+            
+            --text-white: #ffffff;
+            --text-silver: #b0b0b0;
+            
+            /* Efeitos */
+            --glow-orange: 0 0 15px rgba(255, 107, 0, 0.4);
+            --border-metal: 1px solid rgba(255, 255, 255, 0.1);
+            --border-separator: 1px solid rgba(0, 0, 0, 0.1); /* Linhas da tabela clara */
+            
+            /* Tipografia */
+            --font-title: 'Chakra Petch', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        /* --- 2. RESET E BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--garage-black);
+            color: var(--text-silver);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            color: var(--text-white);
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        strong { color: var(--text-white); font-weight: 700; }
+        span.highlight { color: var(--mechanic-orange); }
+
+        a { text-decoration: none; transition: 0.3s; }
+
+        /* --- 3. COMPONENTES --- */
+        
+        /* Botão CTA (Call to Action) */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--mechanic-orange);
+            color: var(--text-white);
+            font-family: var(--font-title);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 18px 40px;
+            border-radius: 4px; 
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: var(--glow-orange);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.7);
+            background-color: #ff8533;
+        }
+
+        .btn-cta::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-cta:hover::after { left: 100%; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 4. SEÇÕES --- */
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: var(--border-metal);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i { color: var(--mechanic-orange); font-size: 1.8rem; }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            border-bottom: 4px solid var(--mechanic-orange);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            max-width: 900px;
+            margin: 0 auto 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero h2 {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: var(--text-silver);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-transform: none;
+        }
+
+        /* PROBLEMA / SOLUÇÃO */
+        .problem-solution {
+            padding: 80px 0;
+            background-color: var(--garage-dark);
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .text-block h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--mechanic-orange);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .feature-list i { color: var(--mechanic-orange); font-size: 1.5rem; }
+
+        /* MÓDULOS DO CURSO (ÍCONES GRANDES RECOLOCADOS) */
+        .modules {
+            padding: 80px 0;
+            background-color: var(--garage-black);
+            background-image: radial-gradient(circle at top right, rgba(255, 107, 0, 0.05), transparent 40%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-header p { font-size: 1.1rem; opacity: 0.8; }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            background: var(--garage-gray);
+            padding: 30px;
+            border: var(--border-metal);
+            border-left: 3px solid var(--mechanic-orange);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            background: #252525;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .module-icon {
+            font-size: 3rem; /* Ícones maiores */
+            color: var(--mechanic-orange);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .module-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .module-card p { font-size: 0.95rem; color: var(--text-silver); }
+
+        /* PROCESSO INVERTIDO (TABELA COM LINHAS E ÍCONES) */
+        .inverted-process {
+            padding: 80px 0;
+            background: var(--mechanic-orange);
+            color: var(--garage-black);
+            text-align: center;
+        }
+
+        .inverted-process h2 { color: var(--garage-black); font-size: 2.5rem; margin-bottom: 20px; }
+        .inverted-process p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; font-weight: 500; color: #000; }
+        
+        .inverted-card {
+            background: rgba(255,255,255,0.95);
+            padding: 0; /* Padding removido para controle da tabela */
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            text-align: left; /* Alinhamento à esquerda estilo tabela */
+        }
+        
+        .inverted-card-header {
+            background: #222;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .inverted-card-header h3 {
+            color: var(--mechanic-orange);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        /* Tabela de Benefícios (Com Linhas) */
+        .benefit-table {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: #333;
+            padding: 20px 30px;
+            border-bottom: 1px solid #ddd; /* Linha de separação */
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+        
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-item:hover {
+            background-color: rgba(255, 107, 0, 0.05);
+        }
+        
+        .benefit-item i {
+            color: var(--mechanic-orange);
+            font-size: 1.5rem;
+        }
+
+        /* AUTORIDADE (NOME CORRIGIDO) */
+        .authority {
+            padding: 80px 0;
+            background-color: var(--garage-dark);
+        }
+
+        .authority-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .marcell-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 4px;
+            filter: grayscale(100%);
+            transition: 0.5s;
+            border: 1px solid var(--text-silver);
+        }
+        
+        .marcell-img:hover { filter: grayscale(0%); border-color: var(--mechanic-orange); }
+
+        .quote {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-style: italic;
+            border-left: 4px solid var(--mechanic-orange);
+            padding-left: 20px;
+            margin-top: 20px;
+            color: var(--text-white);
+        }
+
+        /* PREÇO */
+        .price-section {
+            padding: 80px 0;
+            text-align: center;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png') var(--garage-black);
+        }
+
+        .price-card {
+            background: var(--garage-gray);
+            border: 2px solid var(--mechanic-orange);
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .price-card::before {
+            content: 'VAGAS LIMITADAS';
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--mechanic-orange);
+            color: var(--text-white);
+            padding: 5px 20px;
+            font-weight: 700;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .price-value {
+            font-family: var(--font-title);
+            font-size: 4rem;
+            color: var(--text-white);
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price-value span { font-size: 1.5rem; color: var(--text-silver); }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: var(--border-metal);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-2, .authority-content { grid-template-columns: 1fr; }
+            .marcell-img { max-width: 100%; margin-bottom: 20px; }
+            .inverted-process h2 { font-size: 1.8rem; }
+            .benefit-item { font-size: 1rem; padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Fixo -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="ph ph-wrench"></i> PNEUCAR <span style="font-size: 0.7em; opacity: 0.7; margin-left: 5px;">| ESCOLA</span>
+            </div>
+            <!-- Botão com Link Relativo para a Página de Inscrição -->
+            <a href="inscricao.html" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">
+                Inscrever
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Não estou procurando funcionários.<br><span class="highlight">Estou procurando aprendizes para formar.</span></h1>
+            <h2>Aprenda mecânica automotiva na prática, dentro de uma das oficinas mais respeitadas de Goiânia, e concorra a uma vaga efetiva no nosso time em 4 meses.</h2>
+            <!-- Botão com Link Relativo para a Página de Inscrição -->
+            <a href="inscricao.html" class="btn-cta">
+                <i class="ph ph-engine"></i> Quero minha vaga na Pneucar
+            </a>
+        </div>
+    </section>
+
+    <!-- Problema e Solução -->
+    <section class="problem-solution">
+        <div class="container grid-2">
+            <div class="text-block">
+                <h2>Cansado de cursos teóricos que não te ensinam a apertar um parafuso?</h2>
+                <p>O mercado está cheio de "mecânicos de YouTube". Mas quando o carro chega na oficina com um problema real, a teoria não resolve.</p>
+                <p style="margin-top: 15px;">Na <strong>Pneucar</strong>, decidimos fazer diferente. Não vamos contratar quem "diz que sabe". Vamos <strong>ensinar quem quer aprender</strong>.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="ph ph-prohibit"></i> Sem sala de aula chata</li>
+                    <li><i class="ph ph-prohibit"></i> Sem enrolação</li>
+                    <li><i class="ph ph-check-circle"></i> Mão na graxa desde o primeiro dia</li>
+                </ul>
+            </div>
+            <div class="image-block">
+                <!-- Imagem Ilustrativa de Oficina -->
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1000&auto=format&fit=crop" alt="Mecânico trabalhando" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos do Curso -->
+    <section class="modules">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Que Você Vai Aprender</h2>
+                <p>Do Básico ao Diagnóstico Avançado. Baseado na rotina real de trabalho.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Módulo 1 -->
+                <div class="module-card">
+                    <i class="ph ph-users-three module-icon"></i>
+                    <h3>01. Cultura & 5S</h3>
+                    <p>Aprenda a organização, limpeza e disciplina que separam o trocador de peças do Mecânico de Elite. Postura profissional é tudo.</p>
+                </div>
+
+                <!-- Módulo 2 -->
+                <div class="module-card">
+                    <i class="ph ph-engine module-icon"></i> <!-- Ícone de Motor -->
+                    <h3>02. Mão na Massa</h3>
+                    <p>Troca de óleo, filtros, revisão de freios e suspensão. Você vai executar serviços reais sob supervisão direta.</p>
+                </div>
+
+                <!-- Módulo 3 -->
+                <div class="module-card">
+                    <i class="ph ph-wrench module-icon"></i> <!-- Ícone de Ferramenta -->
+                    <h3>03. Precisão Técnica</h3>
+                    <p>Domine a Metrologia (medidas exatas) e o manuseio técnico de ferramentas de ajuste fino. Chega de "achismo".</p>
+                </div>
+
+                <!-- Módulo 4 -->
+                <div class="module-card">
+                    <i class="ph ph-desktop-tower module-icon"></i> <!-- Ícone de Tecnologia -->
+                    <h3>04. Diagnóstico Tech</h3>
+                    <p>Introdução ao uso de Scanners e Osciloscópio para identificar falhas eletrônicas complexas que ninguém mais acha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processo Invertido -->
+    <section class="inverted-process">
+        <div class="container">
+            <h2>Mais que um Curso.<br>Uma Jornada de Excelência.</h2>
+            <p>Nossa missão é formar a nova geração de especialistas automotivos de Goiânia. Buscamos talentos que compartilhem da nossa paixão por carros e pela qualidade técnica. Queremos treinar você nos padrões da Pneucar e, se você se destacar, terá um lugar no nosso time.</p>
+            
+            <div class="inverted-card">
+                <div class="inverted-card-header">
+                    <h3>FUTURO PROFISSIONAL (PARA OS APROVADOS)</h3>
+                </div>
+                <!-- Tabela estilo Lista com Linhas de Separação -->
+                <ul class="benefit-table">
+                    <li class="benefit-item">
+                        <i class="ph ph-money"></i> Salário da Categoria + Premiação
+                    </li>
+                    <li class="benefit-item">
+                        <i class="ph ph-file-text"></i> Carteira Assinada (CLT)
+                    </li>
+                    <li class="benefit-item">
+                        <i class="ph ph-trend-up"></i> Plano de Carreira
+                    </li>
+                    <li class="benefit-item">
+                        <i class="ph ph-heartbeat"></i> Plano de Saúde
+                    </li>
+                </ul>
+                <div style="padding: 20px; text-align: center; background: #f9f9f9;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #666; font-style: italic;">*Mesmo se não for contratado, você sai com Certificado de Experiência Prática Pneucar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Autoridade (ATUALIZADO) -->
+    <section class="authority">
+        <div class="container authority-content">
+            <div class="image-wrapper">
+                <!-- Placeholder para Foto do Marcell -->
+                <img src="https://images.unsplash.com/photo-1530047625168-4b29afad0fdc?q=80&w=800&auto=format&fit=crop" alt="Marcell Pneucar" class="marcell-img">
+                <p style="text-align: center; font-size: 0.8rem; opacity: 0.5; margin-top: 5px;">(Foto ilustrativa: Marcell e o legado da Pneucar)</p>
+            </div>
+            <div class="text-wrapper">
+                <h2 style="color: var(--mechanic-orange);">Quem vai te ensinar?</h2>
+                <h3>Marcell Patrick</h3> <!-- Nome Atualizado -->
+                <p style="margin-top: 10px;">Gestor e Especialista Automotivo. Segunda geração de mecânicos, com mais de 30 anos de legado em Goiânia.</p>
+                <p>A Pneucar não é apenas uma oficina, é uma escola de excelência técnica.</p>
+                <div class="quote">
+                    "Eu não quero o seu currículo. Eu quero ver a sua atitude e a sua vontade de aprender."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preço / Filtro -->
+    <section class="price-section">
+        <div class="container">
+            <h2 style="margin-bottom: 40px;">Por que existe um investimento?</h2>
+            <p style="max-width: 600px; margin: 0 auto 30px;">O valor simbólico representa o seu compromisso com a formação. Buscamos alunos que encarem a mecânica com seriedade, amem a profissão e queiram se tornar especialistas respeitados no mercado.</p>
+            
+            <div class="price-card">
+                <h3>Investimento Único</h3>
+                <div class="price-value">
+                    <span>R$</span> 500<span>,00</span>
+                </div>
+                <p>Parcele em até 4x no cartão.</p>
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+                <p style="font-size: 0.9rem; color: var(--text-silver);">Inclui material didático e insumos das aulas práticas.</p>
+                <!-- Botão com Link Relativo para a Página de Inscrição -->
+                <a href="inscricao.html" class="btn-cta" style="width: 100%; margin-top: 20px;">
+                    GARANTIR MINHA VAGA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="modules" style="background: var(--garage-dark);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            
+            <details style="background: var(--garage-gray); padding: 15px; margin-bottom: 10px; border-radius: 4px; cursor: pointer;">
+                <summary style="font-weight: 600; color: var(--text-white);">Preciso ter experiência?</summary>
+                <p style="margin-top: 10px; color: var(--text-silver);">NÃO. Se você tiver Ensino Médio completo e vontade de trabalhar, nós te ensinamos a técnica.</p>
+            </details>
+
+            <details style="background: var(--garage-gray); padding: 15px; margin-bottom: 10px; border-radius: 4px; cursor: pointer;">
+                <summary style="font-weight: 600; color: var(--text-white);">Qual a idade ideal?</summary>
+                <p style="margin-top: 10px; color: var(--text-silver);">Foco preferencial em homens de 20 a 25 anos, que buscam construir carreira.</p>
+            </details>
+
+            <details style="background: var(--garage-gray); padding: 15px; margin-bottom: 10px; border-radius: 4px; cursor: pointer;">
+                <summary style="font-weight: 600; color: var(--text-white);">É garantia de emprego?</summary>
+                <p style="margin-top: 10px; color: var(--text-silver);">Não. É uma OPORTUNIDADE. A contratação depende exclusivamente do seu desempenho.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="color: var(--mechanic-orange); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;">PNEUCAR | ESCOLA DE MECÂNICA</p>
+            <p>Setor Coimbra - Goiânia, GO</p>
+            <p style="opacity: 0.5; margin-top: 20px;">Desenvolvido por Live Consultoria (Estratégia & Tecnologia)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
