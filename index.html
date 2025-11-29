@@ -17,12 +17,12 @@
         /* --- 1. VARIÁVEIS E TOKENS (Identidade "Garage Dark") --- */
         :root {
             /* Cores Principais */
-            --garage-black: #0a0a0a;        /* Fundo Absoluto */
-            --garage-dark: #121212;         /* Fundo Secundário */
-            --garage-gray: #1e1e1e;         /* Cards */
+            --garage-black: #0a0a0a;       /* Fundo Absoluto */
+            --garage-dark: #121212;        /* Fundo Secundário */
+            --garage-gray: #1e1e1e;        /* Cards */
             
-            --mechanic-orange: #ff6b00;     /* Ação / Destaque (Laranja Ferramenta) */
-            --mechanic-yellow: #f1c40f;     /* Alerta / Atenção */
+            --mechanic-orange: #ff6b00;    /* Ação / Destaque (Laranja Ferramenta) */
+            --mechanic-yellow: #f1c40f;    /* Alerta / Atenção */
             
             --text-white: #ffffff;
             --text-silver: #b0b0b0;
@@ -400,6 +400,27 @@
             border-top: var(--border-metal);
             font-size: 0.9rem;
         }
+        
+        .footer-brand {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Logo Oficial Pneucar - Ajuste Monocromático */
+        .footer-brand img {
+            height: 60px; /* Levemente maior para destaque */
+            width: auto;
+            filter: brightness(0) invert(1); /* Torna o logo totalmente branco */
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        
+        .footer-brand img:hover {
+            opacity: 1;
+        }
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
@@ -531,17 +552,17 @@
         </div>
     </section>
 
-    <!-- Autoridade (ATUALIZADO) -->
+    <!-- Autoridade (ATUALIZADO COM NOVA FOTO) -->
     <section class="authority">
         <div class="container authority-content">
             <div class="image-wrapper">
-                <!-- Placeholder para Foto do Marcell -->
-                <img src="https://images.unsplash.com/photo-1530047625168-4b29afad0fdc?q=80&w=800&auto=format&fit=crop" alt="Marcell Pneucar" class="marcell-img">
-                <p style="text-align: center; font-size: 0.8rem; opacity: 0.5; margin-top: 5px;">(Foto ilustrativa: Marcell e o legado da Pneucar)</p>
+                <!-- Foto do Marcell e Equipe (GitHub Raw) -->
+                <img src="https://github.com/EcossistemaLive/escola-pneucar/blob/main/marcell%2Bequipe.jpg?raw=true" alt="Marcell e Equipe Pneucar" class="marcell-img">
+                <p style="text-align: center; font-size: 0.8rem; opacity: 0.5; margin-top: 5px;">(Equipe e legado da Pneucar)</p>
             </div>
             <div class="text-wrapper">
                 <h2 style="color: var(--mechanic-orange);">Quem vai te ensinar?</h2>
-                <h3>Marcell Patrick</h3> <!-- Nome Atualizado -->
+                <h3>Marcell Patrick</h3>
                 <p style="margin-top: 10px;">Gestor e Especialista Automotivo. Segunda geração de mecânicos, com mais de 30 anos de legado em Goiânia.</p>
                 <p>A Pneucar não é apenas uma oficina, é uma escola de excelência técnica.</p>
                 <div class="quote">
@@ -603,11 +624,11 @@
             <p style="color: var(--mechanic-orange); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;">PNEUCAR | ESCOLA DE MECÂNICA</p>
             <p>Setor Coimbra - Goiânia, GO</p>
             
-            <!-- Início da Logo Adicionada no Footer -->
+            <!-- Início da Logo Adicionada no Footer (Mantida da sua versão) -->
             <div style="margin: 40px 0 20px 0; opacity: 0.9;">
                 <img src="https://raw.githubusercontent.com/Clebito2/Escola-de-mecanicos-Pneucar/main/logo%20pneucar.png" 
                      alt="Logo Pneucar" 
-                     style="max-width: 180px; height: auto; display: block; margin: 0 auto;">
+                     style="max-width: 180px; height: auto; display: block; margin: 0 auto; filter: brightness(0) invert(1);">
                 <p style="color: var(--text-silver); font-size: 0.85rem; font-style: italic; margin-top: 8px;">uma iniciativa Pneucar</p>
             </div>
             <!-- Fim da Logo -->
